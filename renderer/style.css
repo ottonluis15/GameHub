@@ -1,0 +1,109 @@
+* { box-sizing: border-box }
+:root {
+  color-scheme: dark;
+  --bg: #101419; --panel: #1b2229; --hover: #27343a; --ink: #edf4f1;
+  --muted: #a0afa9; --mint: #a4f4cf; --edge: #35413f; --danger: #ffb2ab;
+  --s: 8px; --gap: 16px; --pad: clamp(20px, 4vw, 64px); --round: 14px;
+  --shadow: 0 16px 44px #0005; --cols: 3;
+  font: 15px/1.5 "Segoe UI", system-ui, sans-serif;
+}
+body { margin: 0; min-height: 100vh; color: var(--ink); background: radial-gradient(ellipse at 85% 0%, #20352f 0, transparent 530px), var(--bg) }
+[hidden], .symbols { display: none !important }
+button, input, select { font: inherit; color: inherit }
+button, select, input { border: 1px solid var(--edge); border-radius: 9px; background: var(--panel); padding: 9px 13px }
+button { cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--s); transition: background .16s, border-color .16s }
+button:hover, select:hover { background: var(--hover); border-color: #5b746a }
+button:disabled { opacity: .55; cursor: wait }
+:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px }
+svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none }
+h1,h2,h3,p { margin: 0 }
+h1 { font-size: clamp(36px, 4.5vw, 62px); letter-spacing: -.055em; line-height: 1.12 }
+h2 { font-size: 24px; letter-spacing: -.035em }
+h3, small, p, footer { color: var(--muted) }
+.mast, main { max-width: 1680px; margin: auto; padding-inline: var(--pad) }
+.mast, .heading, .dialog-head { display: flex; align-items: center; justify-content: space-between; gap: var(--gap) }
+.mast { height: 70px; border-bottom: 1px solid var(--edge) }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 750; font-size: 22px; letter-spacing: -.055em }
+.brand-mark { width: 36px; height: 36px; object-fit: contain; flex: none }
+main { padding-bottom: 100px }
+.heading { padding-block: clamp(25px,5vw,62px) 24px }
+.heading p { margin-top: var(--s) }
+#add, .primary { background: var(--mint); color: #10291e; font-weight: 650 }
+.tools { display: flex; gap: var(--s); margin-bottom: 24px }
+.search { background: var(--panel); border: 1px solid var(--edge); border-radius: 9px; padding-left: 12px; display: flex; align-items: center; color: var(--muted); flex: 1; min-width: 0 }
+.search input { background: transparent; border: 0; flex: 1; min-width: 0 }
+#grid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0,1fr)); gap: clamp(10px,1.8vw,26px) }
+#grid[data-columns="1"] { --cols: 1 } #grid[data-columns="2"] { --cols: 2 }
+#grid[data-columns="4"] { --cols: 4 } #grid[data-columns="5"] { --cols: 5 }
+.card { display: block; overflow: hidden; padding: 0; text-align: left; min-width: 0; border-radius: var(--round); box-shadow: 0 5px 18px #0004 }
+.art { display: block; aspect-ratio: 2 / 3; overflow: hidden; background: var(--panel) }
+.art img, #preview { width: 100%; height: 100%; object-fit: cover; display: block }
+.art img { transition: transform .22s, filter .22s }
+.card:hover img { transform: scale(1.035); filter: brightness(1.08) }
+.caption { display: grid; gap: 2px; padding: 10px 14px }
+.edit-label {
+  justify-self: start; display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 3px; padding: 2px 7px; border-radius: 6px;
+  background: #263e33; color: var(--mint); font-size: 12px; font-weight: 600;
+}
+.edit-label svg { width: 13px; height: 13px }
+.edit-switch {
+  margin-left: auto; width: 30px; height: 18px; border: 1px solid var(--muted);
+  border-radius: 12px; padding: 3px; display: flex; align-items: center;
+}
+.edit-switch::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--muted); transition: transform .16s }
+#edit[aria-pressed="true"] .edit-switch { background: var(--mint); border-color: var(--mint) }
+#edit[aria-pressed="true"] .edit-switch::before { background: var(--bg); transform: translateX(12px) }
+.caption strong, .source-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+#empty { padding: 52px var(--gap); border: 1px dashed var(--edge); border-radius: var(--round); text-align: center }
+#empty svg { width: 54px; height: 54px; color: var(--mint) }
+#empty p, #empty button { margin-top: 12px }
+.compact, .up { position: fixed; z-index: 2; opacity: 0; visibility: hidden; transition: opacity .2s, transform .2s, visibility .2s; box-shadow: var(--shadow) }
+.compact { inset: 0 0 auto; padding: var(--s) var(--pad); background: #101419ed; backdrop-filter: blur(14px); transform: translateY(-100%) }
+.compact .search { max-width: 760px; margin: auto }
+.up { right: var(--pad); bottom: 22px; border-radius: 50%; width: 44px; height: 44px; transform: translateY(8px) }
+body.scrolled :is(.compact,.up) { opacity: 1; visibility: visible; transform: translateY(0) }
+dialog { color: var(--ink); background: var(--panel); border: 1px solid var(--edge); border-radius: var(--round); width: min(620px,90vw); padding: 24px; box-shadow: var(--shadow); max-height: 90vh; overflow: auto }
+dialog::backdrop { background: #05090bbb }
+.dialog-head { margin-bottom: 24px }
+.dialog-head button { padding: var(--s) }
+#drawer { position: fixed; inset: 0 0 0 auto; margin: 0; width: min(365px,90vw); height: 100%; max-height: 100%; border-radius: 0; background: #192225f5; backdrop-filter: blur(18px) }
+#drawer[open] { animation: slide-in .2s ease-out }
+@keyframes slide-in { from { transform: translateX(100%); opacity: .5 } }
+#drawer section { padding: 12px 0; border-top: 1px solid var(--edge) }
+#drawer section > button { width: 100%; justify-content: flex-start; border-color: transparent; background: transparent }
+#drawer section > button:hover, #drawer button[aria-pressed="true"] { background: #2b4039; color: var(--mint) }
+#drawer h3 { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; padding: 0 10px 6px }
+#drawer p, #drawer footer { padding: var(--s) }
+#columns { display: flex; gap: 4px; margin: 0 var(--s) var(--s) }
+#columns button { flex: 1 }
+.editor-body { display: grid; grid-template-columns: 32% 1fr; gap: 22px; align-items: start }
+#preview { height: auto; aspect-ratio: 2/3; border-radius: 10px }
+.fields, form label { display: grid; gap: var(--s); min-width: 0 }
+.fields { gap: var(--gap) }
+.fields small, #folderList li { overflow-wrap: anywhere }
+.actions { display: flex; gap: var(--s); flex-wrap: wrap }
+footer.actions { justify-content: flex-end; margin-top: 24px }
+.danger { color: var(--danger) }
+#guide { width: min(550px, 90vw) }
+#guide[open] { animation: guide-in .2s ease-out }
+@keyframes guide-in { from { opacity: 0; transform: translateY(8px) scale(.98) } }
+.guide-heading { display: flex; align-items: center; gap: 10px }
+.guide-steps { display: grid; gap: var(--s); margin: 0 }
+.guide-steps > div { padding: 12px 14px; border: 1px solid var(--edge); border-left: 2px solid var(--mint); border-radius: 9px }
+.guide-steps dt { font-weight: 650 }
+.guide-steps dd { margin: 4px 0 0; color: var(--muted) }
+.guide-steps strong { color: var(--ink); font-weight: 600 }
+#folderList { list-style: none; padding: 0 }
+#folderList li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0 }
+#keyStatus { margin: 12px 0 }
+#toasts, #work { position: fixed; left: var(--pad); z-index: 5; max-width: min(78vw,550px) }
+#toasts { bottom: 18px; display: grid; gap: var(--s); pointer-events: none }
+.toast, #work { border: 1px solid var(--edge); border-radius: 10px; background: #23312d; padding: 10px 14px; box-shadow: var(--shadow) }
+.toast { pointer-events: auto }
+.toast button { margin-left: var(--s); padding: 4px 8px }
+#work { top: 64px; display: flex; align-items: center; gap: 10px; pointer-events: none }
+.spinner, button.busy::before { content: ""; width: 14px; height: 14px; border: 2px solid var(--edge); border-top-color: var(--mint); border-radius: 50%; animation: spin .7s linear infinite; flex: none }
+@keyframes spin { to { transform: rotate(360deg) } }
+@media(max-width:760px) { .tools { flex-wrap: wrap } .tools .search { flex-basis: 100% } .caption { padding: 8px } }
+@media(prefers-reduced-motion:reduce) { *, *::before { animation-duration: .01ms !important; transition-duration: .01ms !important } }

@@ -1,0 +1,39 @@
+{
+  "name": "gamehub",
+  "version": "1.3.0",
+  "description": "GameHub - Hub de jogos",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.gamehub.app",
+    "productName": "GameHub",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/gamehub-icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "main/**/*",
+      "renderer/**/*",
+      "assets/default-cover.svg",
+      "assets/gamehub-icon.png",
+      "assets/gamehub-icon.ico",
+      "package.json"
+    ]
+  }
+}
