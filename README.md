@@ -49,6 +49,10 @@ npm.cmd run build
 
 O electron-builder gera `dist/GameHub Setup 1.3.0.exe` usando NSIS.
 
+## 📥 Download
+
+[⬇️ Baixar GameHub para Windows](https://github.com/USUARIO/REPOSITORIO/releases/latest/download/GameHub-Setup-1.3.0.exe)
+
 ## Estrutura do projeto
 
 | Caminho | Responsabilidade |
