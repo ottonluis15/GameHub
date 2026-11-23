@@ -51,7 +51,7 @@ O electron-builder gera `dist/GameHub Setup 1.3.0.exe` usando NSIS.
 
 ## 📥 Download
 
-[⬇️ Baixar GameHub para Windows](https://github.com/USUARIO/REPOSITORIO/releases/latest/download/GameHub-Setup-1.3.0.exe)
+[⬇️ Baixar GameHub para Windows](https://github.com/ottonluis15/GameHub/releases/download/v1.3.0/GameHub.Setup.1.3.0.exe)
 
 ## Estrutura do projeto
 
